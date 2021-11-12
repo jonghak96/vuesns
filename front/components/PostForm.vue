@@ -19,7 +19,7 @@
                 <v-btn type="submit" color="green" absolute right>짹짹짹</v-btn>
                 <div>
                     <div v-for="(p, i) in imagePaths" :key="p" style="display: inline-block">
-                        <img :src="`http://localhost:3085/${p}`" :alt="p" style="width: 100px">
+                        <img :src="p" :alt="p" style="width: 100px">
                         <div>
                             <button type="button" @click="onRemoveImage(i)">제거</button>
                         </div>

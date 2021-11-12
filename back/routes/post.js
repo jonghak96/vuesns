@@ -1,4 +1,8 @@
 const express = require("express");
+const AWS = require("aws-sdk");
+
+const multerS3 = require("multer-s3");
+
 const multer = require("multer");
 const path = require("path");
 const { nextTick } = require("process");
@@ -7,15 +11,18 @@ const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 
 const router = express.Router();
 
+AWS.config.update({
+    region: "us-east-2",
+    accessKeyId: process.env.S3_ACCESS_KEY_ID,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+});
+
 const upload = multer({
-    storage: multer.diskStorage({
-        destination(req, file, done) {
-            done(null, "uploads");
-        },
-        filename(req, file, done) {
-            const ext = path.extname(file.originalname);
-            const basename = path.basename(file.originalname, ext);
-            done(null, basename + Date.now() + ext);
+    storage: multerS3({
+        s3: new AWS.S3(),
+        bucket: "vuesns",
+        key(req, file, cb) {
+            cb(null, `original/${Date.now()}${path.basename(file.originalname)}`)
         },
     }),
     limits: { fileSize: 20 * 1024 * 1024 },
@@ -120,9 +127,8 @@ router.delete("/:id", isLoggedIn, async (req, res, next) => {
 });
 
 router.post("/images", isLoggedIn, upload.array("image"), (req, res) => {
-    // req.files = [{ filename: "smileImage20211031.png", filename: "happyImage20211031.png" }];
     console.log(req.files);
-    res.json(req.files.map( (v) => v.filename ));
+    res.json(req.files.map( (v) => v.location ));
 });
 
 router.post("/:id/comment", isLoggedIn, async (req, res, next) => {
