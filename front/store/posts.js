@@ -109,7 +109,7 @@ export const actions = {
         this.$axios.get(`/post/${payload.postId}/comments`)
         .then( (res) => {
             commit("loadComments", {
-                posdId: payload.postId,
+                postId: payload.postId,
                 data: res.data,
             });
         })

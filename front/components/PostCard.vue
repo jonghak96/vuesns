@@ -91,12 +91,12 @@ export default {
             });
         },
         onToggleComment() {
-            if(!this.commentOpened) {
+            this.commentOpened = !this.commentOpened;
+            if(this.commentOpened) {
                 return this.$store.dispatch("posts/loadComments", {
                     postId: this.post.id,
                 });
             }
-            this.commentOpened = !this.commentOpened;
         },
         onClickHeart() {
             if(!this.me) {
