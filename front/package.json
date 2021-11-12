@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "PORT=80 NODE_ENV=production node server",
+    "prestart" : "npm run build",
+    "start": "PORT=80 NODE_ENV=production pm2 start server",
     "lint": "eslint --ext .js,.vue ."
   },
   "author": "",
@@ -19,6 +20,7 @@
     "express": "^4.17.1",
     "lodash.throttle": "^4.1.1",
     "nuxt": "^2.15.8",
+    "pm2": "^5.1.2",
     "vue": "^2.6.14",
     "vuetify": "^2.5.10"
   },
