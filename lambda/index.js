@@ -16,14 +16,18 @@ exports.handler = async (event, context, callback) => {
             Bucket,
             Key,
         }).promise();
-        const resizedImage = await Sharp(s3Object.body).resize(800, 800, { fit: "inside" }).toFormat(requiredFormat).toBuffer();
+        const resizedImage = await Sharp(s3Object.Body)
+        .resize(800, 800, {
+            fit: "inside",
+        }).toFormat(requiredFormat)
+        .toBuffer();
         await S3.putObject({
             Body: resizedImage,
             Bucket,
             Key: `thumbnail/${filename}`,
         }).promise();
         return callback(null, `thumbnail/${filename}`);
-        
+
     } catch (e) {
         console.error(e);
         return callback(e);
