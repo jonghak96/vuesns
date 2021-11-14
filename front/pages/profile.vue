@@ -41,7 +41,6 @@
             FollowList,
         },
         middleware: "authenticated",
-        // layout: "admin",
         data() {
             return {
                 valid: false,
@@ -49,7 +48,6 @@
                 nicknameRules: [ v => !!v || "닉네임은 필수입니다."],
             };
         },
-
         fetch({ store }) {
             return Promise.all([
                 store.dispatch("users/loadFollowers", { offset: 0 }),
@@ -73,7 +71,6 @@
                 return this.$store.state.users.hasMoreFollowing;
             },
         },
-        // watch() {},
         methods: {
             onChangeNickname() {
                 this.$store.dispatch("users/changeNickname", {

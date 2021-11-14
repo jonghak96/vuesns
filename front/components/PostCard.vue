@@ -19,8 +19,10 @@
                     <v-icon>mdi-comment-outline</v-icon>
                 </v-btn>
                 <v-menu offset-y open-on-hover>
-                    <template #activator="{on}">
-                        <v-btn text color="orange" v-on="on"><v-icon>mdi-dots-horizontal</v-icon></v-btn>
+                    <template v-slot:activator="{ on }">
+                        <v-btn text color="orange" v-on="on">
+                            <v-icon>mdi-dots-horizontal</v-icon>
+                        </v-btn>
                     </template>
                     <div style="background white">
                         <v-btn text color="orange" @click="onEditPost">수정</v-btn>
@@ -37,8 +39,8 @@
                         <div>{{ c.User.nickname[0] }}</div>
                     </v-list-item-avatar>
                     <v-list-item-content>
-                        <v-list-item-title>{{ c.User.nickname }}</v-list-item-title>
-                        <v-list-item-subtitle>{{ c.content }}</v-list-item-subtitle>
+                        <h3>{{ c.User.nickname }}</h3>
+                        <div>{{ c.content }}</div>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -76,14 +78,14 @@ export default {
         },
         heartIcon() {
             return this.liked ? "mdi-heart" : "mdi-heart-outline";
-        }
+        },
     },
     methods: {
         onEditPost() {
-            this.$store.dispatch("posts/edit", {
-                // id: this.post.id,
-                // content: this.post.content,
-            });
+            // this.$store.dispatch("posts/edit", {
+            //     id: this.post.id,
+            //     content: this.post.content,
+            // });
         },
         onRemovePost() {
             this.$store.dispatch("posts/remove", {
@@ -100,7 +102,7 @@ export default {
         },
         onClickHeart() {
             if(!this.me) {
-                return alert("로그인이 필요합니다. (실무에선 사용금지)");
+                return alert("로그인이 필요합니다.");
             }
             if(this.liked) {
                 return this.$store.dispatch("posts/unlikePost", {
@@ -113,7 +115,7 @@ export default {
         },
         onRetweet() {
             if(!this.me) {
-                return alert("로그인이 필요합니다. (실무에선 사용금지)");
+                return alert("로그인이 필요합니다.");
             }
             this.$store.dispatch("posts/retweet", {
                 postId: this.post.id,
