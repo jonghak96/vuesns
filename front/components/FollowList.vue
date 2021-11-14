@@ -3,7 +3,7 @@
         <v-col v-for="user in users" :key="user.id" cols="12" md="4" style="display: inline-block">
             <v-list-item>
                 <v-list-item-avatar color="blue">
-                    <span class="white--text headline">{{ user.nickname[0] }}</span>
+                    <div class="white--text headline">{{ user.nickname[0] }}</div>
                 </v-list-item-avatar>
                 <v-list-item-content>
                     <v-list-item-title>{{ user.nickname }}</v-list-item-title>

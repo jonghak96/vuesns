@@ -19,14 +19,14 @@
                 <v-container>
                     <v-subheader>팔로워</v-subheader>
                     <follow-list :users="followerList" :remove="removeFollower" />
-                    <v-btn v-if="hasMoreFollower" color="blue" style="width: 100%" @click="onLoadFollowers">더보기</v-btn>
+                    <v-btn v-show="hasMoreFollower" color="blue" style="width: 100%" @click="onLoadFollowers">더보기</v-btn>
                 </v-container>
             </v-card>
             <v-card style="margin-bottom: 20px">
                 <v-container>
                     <v-subheader>팔로잉</v-subheader>
                     <follow-list :users="followingList" :remove="removeFollowing" />
-                    <v-btn v-if="hasMoreFollowing" color="blue" style="width: 100%" @click="onLoadFollowings">더보기</v-btn>
+                    <v-btn v-show="hasMoreFollowing" color="blue" style="width: 100%" @click="onLoadFollowings">더보기</v-btn>
                 </v-container>
             </v-card>
         </v-container>

@@ -58,12 +58,6 @@ module.exports = {
         locales: ["ko"],
     },
     build: {
-        html: {
-            minify: {
-                collapseWhitespace: true,  // as @dario30186 mentioned
-                removeComments: true, // 👈 add this line
-            },
-        },
         analyze: false,
         extend(config, {isClient, isServer, isDev}) {
             if(isServer && !isDev) {

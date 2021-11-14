@@ -1,47 +1,49 @@
 <template>
-    <div v-if="images.length === 0" />
-    <div v-else-if="images.length === 1">
-        <v-img
-            :src="images[0].src.replace(/original\//, 'thumbnail/')"
-            contain
-            aspect-ratio="2"
-            style="background: #000;"
-            @click="zoomImages"
-        />
-        <image-zoom v-if="imageZoomed" :close-modal="closeModal" :images="images" />
-    </div>
-    <div v-else-if="images.length === 2" style="display: flex">
-        <v-img
-            :src="images[0].src.replace(/original\//, 'thumbnail/')"
-            contain
-            aspect-ratio="2"
-            style="flex: 1;background: #000;"
-            @click="zoomImages"
-        />
-        <v-img
-            :src="images[1].src.replace(/original\//, 'thumbnail/')"
-            contain
-            aspect-ratio="2"
-            style="flex: 1;background: #000;"
-            @click="zoomImages"
-        />
-        <image-zoom v-if="imageZoomed" :close-modal="closeModal" :images="images" />
-    </div>
-    <div v-else-if="images.length > 2" style="display: flex">
-        <v-img
-            :src="images[0].src.replace(/original\//, 'thumbnail/')"
-            contain
-            aspect-ratio="2"
-            style="flex: 1;background: #000;"
-            @click="zoomImages"
-        />
-        <div style="flex: 1;align-items: center;justify-content: center;display: flex;border: 1px solid #000;text-align: center;" @click="zoomImages">
-            <div>
-                <v-icon>mdi-dots-horizontal</v-icon>
-                <div>더 보기</div>
-            </div>
+    <div>
+        <div v-if="images.length === 0" />
+        <div v-else-if="images.length === 1">
+            <v-img
+                :src="images[0].src.replace(/original\//, 'thumbnail/')"
+                contain
+                aspect-ratio="2"
+                style="background: #000;"
+                @click="zoomImages"
+            />
+            <image-zoom v-if="imageZoomed" :close-modal="closeModal" :images="images" />
         </div>
-        <image-zoom v-if="imageZoomed" :close-modal="closeModal" :images="images" />
+        <div v-else-if="images.length === 2" style="display: flex">
+            <v-img
+                :src="images[0].src.replace(/original\//, 'thumbnail/')"
+                contain
+                aspect-ratio="2"
+                style="flex: 1;background: #000;"
+                @click="zoomImages"
+            />
+            <v-img
+                :src="images[1].src.replace(/original\//, 'thumbnail/')"
+                contain
+                aspect-ratio="2"
+                style="flex: 1;background: #000;"
+                @click="zoomImages"
+            />
+            <image-zoom v-if="imageZoomed" :close-modal="closeModal" :images="images" />
+        </div>
+        <div v-else-if="images.length > 2" style="display: flex">
+            <v-img
+                :src="images[0].src.replace(/original\//, 'thumbnail/')"
+                contain
+                aspect-ratio="2"
+                style="flex: 1;background: #000;"
+                @click="zoomImages"
+            />
+            <div style="flex: 1;align-items: center;justify-content: center;display: flex;border: 1px solid #000;text-align: center;" @click="zoomImages">
+                <div>
+                    <v-icon>mdi-dots-horizontal</v-icon>
+                    <div>더 보기</div>
+                </div>
+            </div>
+            <image-zoom v-if="imageZoomed" :close-modal="closeModal" :images="images" />
+        </div>
     </div>
 </template>
 

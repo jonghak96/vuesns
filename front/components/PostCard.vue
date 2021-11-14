@@ -34,7 +34,7 @@
             <v-list>
                 <v-list-item v-for="c in post.Comments" :key="c.id">
                     <v-list-item-avatar color="teal">
-                        <span>{{ c.User.nickname[0] }}</span>
+                        <div>{{ c.User.nickname[0] }}</div>
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title>{{ c.User.nickname }}</v-list-item-title>
